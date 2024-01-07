@@ -2,24 +2,30 @@ package com.online.test_trail.controller;
 
 
 import com.online.test_trail.dto.request.ContentDto;
+import com.online.test_trail.helper.ApiResponse;
 import com.online.test_trail.service.ContentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/content")
 @RequiredArgsConstructor
 public class ContentController {
     private final ContentService contentService;
+    private final ApiResponse apiResponse;
 
 
+    @GetMapping
+    public ResponseEntity<Map<String ,Object>> get(){
+        return apiResponse.successResponse("Data fetch successfully",true,null,contentService.findAll());
+    }
     @PostMapping
-    public void save(@Valid @RequestBody ContentDto contentDto){
-            contentService.save(contentDto);
+    public ResponseEntity<Map<String, Object>> save(@Valid @RequestBody ContentDto contentDto) {
+        contentService.save(contentDto);
+        return apiResponse.successResponse("Data save successfully",true,null, null);
     }
 }

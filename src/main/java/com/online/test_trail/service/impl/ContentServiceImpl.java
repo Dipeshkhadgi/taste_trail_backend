@@ -19,7 +19,7 @@ public class ContentServiceImpl  implements ContentService {
 
     @Override
     public List<Content> findAll() {
-        return null;
+        return contentRepo.findAll();
     }
 
     @Override
