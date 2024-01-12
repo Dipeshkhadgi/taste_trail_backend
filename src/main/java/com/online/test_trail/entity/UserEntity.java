@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-@Builder
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,7 +18,6 @@ import java.util.Collection;
                 columnNames = "email"
         )
 })
-
 public class UserEntity implements UserDetails {
 
     @Id
@@ -27,18 +25,20 @@ public class UserEntity implements UserDetails {
     @GeneratedValue(generator = "users_seq_gen", strategy = GenerationType.SEQUENCE)
     private Integer id;
 
-    @Column(name = "full_name", nullable = false)
-    private String fullName;
+    @Column(name = "first_name", nullable = false) // Changed field: fullName to firstName
+    private String firstName;
+
+    @Column(name = "last_name", nullable = false)  // Changed field: mobileNo to lastName
+    private String lastName;
+
+    @Column(name = "username", nullable = false)  // New field: username
+    private String username;
 
     @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "mobile_no")
-    private String mobileNo;
-
     @Column(name = "password", nullable = false)
     private String password;
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
