@@ -2,7 +2,7 @@ package com.online.test_trail.security;
 
 
 import com.online.test_trail.config.PasswordEncoderUtil;
-import com.online.test_trail.service.impl.CustomUserDetailService;
+//import com.online.test_trail.service.impl.CustomUserDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,21 +20,21 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SpringSecurityConfig {
 
-    private final CustomUserDetailService customUserDetailService;
-    private final JwtAuthenticationFilter jwtAuthFilter;
+//    private final CustomUserDetailService customUserDetailService;
+//    private final JwtAuthenticationFilter jwtAuthFilter;
 
-    @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(customUserDetailService);
-        authenticationProvider.setPasswordEncoder(PasswordEncoderUtil.getInstance());
-        return authenticationProvider;
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception{
-        return config.getAuthenticationManager();
-    }
+//    @Bean
+//    public DaoAuthenticationProvider authenticationProvider() {
+//        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+//        authenticationProvider.setUserDetailsService(customUserDetailService);
+//        authenticationProvider.setPasswordEncoder(PasswordEncoderUtil.getInstance());
+//        return authenticationProvider;
+//    }
+//
+//    @Bean
+//    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception{
+//        return config.getAuthenticationManager();
+//    }
 
 
     @Bean
@@ -46,13 +46,13 @@ public class SpringSecurityConfig {
                 .requestMatchers("/authenticate")
                 .permitAll()
                 .anyRequest()
-                .permitAll()
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authenticationProvider(authenticationProvider())
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+                .permitAll();
+//                .and()
+//                .sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and()
+//                .authenticationProvider(authenticationProvider())
+//                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return httpSecurity.build();
     }

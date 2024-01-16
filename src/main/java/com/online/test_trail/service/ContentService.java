@@ -8,6 +8,8 @@ import java.util.List;
 public interface ContentService {
 
     List<Content> findAll();
+    Content findById(Long id);
     void save(ContentDto contentDto);
-
+    void update(Long id, ContentDto contentDto);
+    void deleteById(Long id);
 }
