@@ -2,7 +2,12 @@ package com.online.test_trail.entity;
 
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -10,12 +15,12 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "content")
-public class Content{
+public class Content {
 
     @Id
     @SequenceGenerator(name = "contents_seq_gen", sequenceName = "contents_id_seq", allocationSize = 1)
     @GeneratedValue(generator = "contents_seq_gen", strategy = GenerationType.SEQUENCE)
-    private Integer id;
+    private Long id;
 
     @Column(name = "recipe_title", nullable = false)
     private String recipeTitle;
@@ -41,12 +46,9 @@ public class Content{
     @Column(name = "step_description", length = 500)
     private String stepDescription;
 
-    @Column(name = "used_ingredients", length = 2000)
-    private String usedIngredients;
-
     @Column(name = "recipe_photo")
     private String recipePhoto;
 
-    @Column(name = "ingredients", length = 2000)
-    private String gatheredIngredients;
+    @Column(name = "ingredient_list")
+    public String ingredientsList;
 }

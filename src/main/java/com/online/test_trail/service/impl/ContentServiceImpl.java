@@ -1,6 +1,6 @@
 package com.online.test_trail.service.impl;
 
-import com.online.test_trail.dto.request.ContentDto;
+import com.online.test_trail.dto.ContentDto;
 import com.online.test_trail.entity.Content;
 import com.online.test_trail.repo.ContentRepo;
 import com.online.test_trail.service.ContentService;
@@ -8,11 +8,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
 @RequiredArgsConstructor
-public class ContentServiceImpl  implements ContentService {
+public class ContentServiceImpl implements ContentService {
 
     private final ContentRepo contentRepo;
 
@@ -20,16 +21,32 @@ public class ContentServiceImpl  implements ContentService {
     @Override
     public List<Content> findAll() {
         return contentRepo.findAll();
+
+    }
+
+    @Override
+    public List<Content> searchByTitle(String title) {
+        return contentRepo.searchByRecipeTitle(title);
+    }
+
+    @Override
+    public Optional<Content> findById(Long id) {
+        return contentRepo.findById(id);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        contentRepo.deleteById(id);
     }
 
     @Override
     public void save(ContentDto contentDto) {
         Content content;
 
-        if(contentDto.getId()!=null){
-            content= contentRepo.findById(contentDto.getId()).get();
-        }else{
-            content= new Content();
+        if (contentDto.getId() != null) {
+            content = contentRepo.findById(contentDto.getId()).get();
+        } else {
+            content = new Content();
         }
 
 
@@ -42,9 +59,8 @@ public class ContentServiceImpl  implements ContentService {
         content.setRecipeQuantityType(contentDto.getRecipeQuantityType());
         content.setCategoryType(contentDto.getCategoryType());
         content.setStepDescription(contentDto.getStepDescription());
-        content.setUsedIngredients(contentDto.getUsedIngredients());
         content.setRecipePhoto(contentDto.getRecipePhoto());
-        content.setGatheredIngredients(contentDto.getGatheredIngredients());
+        content.setIngredientsList(content.getIngredientsList());
 
 
         contentRepo.save(content);

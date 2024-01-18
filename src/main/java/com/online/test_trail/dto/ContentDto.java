@@ -1,10 +1,13 @@
-package com.online.test_trail.dto.request;
+package com.online.test_trail.dto;
 
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.antlr.v4.runtime.misc.NotNull;
+
+import java.util.List;
 
 @Setter
 @Getter
@@ -12,32 +15,35 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ContentDto {
 
-    private Integer id;
+    private Long id;
 
+    @NotNull
     private String recipeTitle;
 
+    @NotNull
     private String recipeDescription;
 
+    @NotNull
     private Integer preparationTimeHours;
 
+    @NotNull
     private Integer preparationTimeMinutes;
 
-
+    @NotNull
     private Integer recipeQuantityNumber;
 
-
+    @NotNull
     private String recipeQuantityType;
 
-
+    @NotNull
     private String categoryType;
 
-
+    @NotNull
     private String stepDescription;
 
-    private String usedIngredients;
-
+    @NotNull
     private String recipePhoto;
 
-
-    private String gatheredIngredients;
+    @NotNull
+    private List<String> ingredientsList;
 }
