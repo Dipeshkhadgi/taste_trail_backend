@@ -25,8 +25,8 @@ public class ContentServiceImpl implements ContentService {
     }
 
     @Override
-    public List<Content> searchByTitle(String title) {
-        return contentRepo.searchByRecipeTitle(title);
+    public List<Content> searchByCategory(String category) {
+        return contentRepo.searchByCategory(category);
     }
 
     @Override
@@ -60,9 +60,10 @@ public class ContentServiceImpl implements ContentService {
         content.setCategoryType(contentDto.getCategoryType());
         content.setStepDescription(contentDto.getStepDescription());
         content.setRecipePhoto(contentDto.getRecipePhoto());
-        content.setIngredientsList(content.getIngredientsList());
+        content.setIncredientList(contentDto.getIngredientsList());
+
+        content = contentRepo.save(content);
 
 
-        contentRepo.save(content);
     }
 }

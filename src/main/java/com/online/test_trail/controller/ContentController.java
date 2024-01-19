@@ -15,10 +15,12 @@ import com.online.test_trail.entity.Content;
 import com.online.test_trail.helper.ApiResponse;
 import com.online.test_trail.service.ContentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -29,21 +31,15 @@ public class ContentController {
     private final ApiResponse apiResponse;
 
 
-//    @GetMapping
-//    public ResponseEntity<Map<String ,Object>> get(){
-//        return apiResponse.successResponse("Data fetch successfully",true,null,contentService.findAll());
-//    }
-//    @PostMapping
-//    public ResponseEntity<Map<String, Object>> save(@Valid @RequestBody ContentDto contentDto) {
-//        contentService.save(contentDto);
-//        return apiResponse.successResponse("Data save successfully",true,null, null);
-    public List<Content> findAll() {
-        return this.contentService.findAll();
+    @GetMapping
+    public ResponseEntity<Map<String ,Object>> get(){
+        return apiResponse.successResponse("Data fetch successfully",true,null,contentService.findAll());
     }
-//    @GetMapping("/{title}")
-//    public List<Content> searchByTitle(@PathVariable("title") String title) {
-//        return this.contentService.searchByTitle(title);
-//    }
+
+    @GetMapping("/byCategory/{category}")
+    public List<Content> searchByCategory(@PathVariable("category") String category) {
+        return this.contentService.searchByCategory(category);
+    }
 
 
     @PostMapping("/save")

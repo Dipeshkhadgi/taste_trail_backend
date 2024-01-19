@@ -7,8 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -49,6 +47,8 @@ public class Content {
     @Column(name = "recipe_photo")
     private String recipePhoto;
 
-    @Column(name = "ingredient_list")
-    public String ingredientsList;
+
+    @Column(name="ingredient_list")
+    private String incredientList;
+
 }

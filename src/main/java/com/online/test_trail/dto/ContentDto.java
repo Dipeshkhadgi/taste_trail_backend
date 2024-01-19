@@ -45,5 +45,6 @@ public class ContentDto {
     private String recipePhoto;
 
     @NotNull
-    private List<String> ingredientsList;
+    private String ingredientsList;
+
 }

@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface ContentService {
 
     List<Content> findAll();
-    List<Content> searchByTitle(String title);
+    List<Content> searchByCategory(String category);
 
     Optional<Content> findById(Long id);
 
