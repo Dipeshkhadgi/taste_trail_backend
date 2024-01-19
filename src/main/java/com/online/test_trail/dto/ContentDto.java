@@ -1,4 +1,4 @@
-package com.online.test_trail.dto.request;
+package com.online.test_trail.dto;
 
 
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ContentDto {
 
-    private Integer id;
+    private Long id;
 
     private String recipeTitle;
 
