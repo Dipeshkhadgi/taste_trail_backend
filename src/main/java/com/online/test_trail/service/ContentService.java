@@ -11,6 +11,7 @@ public interface ContentService {
     List<Content> findAll();
     Content findById(Long id);
     List<Content> searchByTitle(String title);
+    List<Content> searchByCategory(String category);
 
 //    Optional<Content> findById(Long id);
 

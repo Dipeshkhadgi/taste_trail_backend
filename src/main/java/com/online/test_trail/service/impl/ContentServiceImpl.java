@@ -21,11 +21,12 @@ public class ContentServiceImpl implements ContentService {
     @Override
     public List<Content> findAll() {
         return contentRepo.findAll();
+
     }
 
     @Override
-    public List<Content> searchByTitle(String title) {
-        return contentRepo.searchByRecipeTitle(title);
+    public List<Content> searchByCategory(String category) {
+        return contentRepo.searchByCategory(category);
     }
 
 //    @Override
@@ -58,18 +59,23 @@ public class ContentServiceImpl implements ContentService {
         content.setRecipeQuantityType(contentDto.getRecipeQuantityType());
         content.setCategoryType(contentDto.getCategoryType());
         content.setStepDescription(contentDto.getStepDescription());
-        content.setUsedIngredients(contentDto.getUsedIngredients());
         content.setRecipePhoto(contentDto.getRecipePhoto());
-        content.setGatheredIngredients(contentDto.getGatheredIngredients());
+        content.setIncredientList(contentDto.getIngredientsList());
+
+        content = contentRepo.save(content);
 
 
-        contentRepo.save(content);
     }
 
     @Override
     public Content findById(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findById'");
+    }
+
+    @Override
+    public List<Content> searchByTitle(String title) {
+        return null;
     }
 
     @Override

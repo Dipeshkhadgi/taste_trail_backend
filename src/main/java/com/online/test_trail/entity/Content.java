@@ -44,12 +44,11 @@ public class Content {
     @Column(name = "step_description", length = 500)
     private String stepDescription;
 
-    @Column(name = "used_ingredients", length = 2000)
-    private String usedIngredients;
-
     @Column(name = "recipe_photo")
     private String recipePhoto;
 
-    @Column(name = "ingredients", length = 2000)
-    private String gatheredIngredients;
+
+    @Column(name="ingredient_list")
+    private String incredientList;
+
 }

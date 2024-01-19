@@ -1,10 +1,15 @@
 package com.online.test_trail.controller;
 
 
+import com.online.test_trail.dto.ChangePasswordDto;
+import com.online.test_trail.dto.ForgetPasswordDto;
+import com.online.test_trail.dto.UpdatePasswordDto;
 import com.online.test_trail.dto.UserDto;
 import com.online.test_trail.entity.UserEntity;
+import com.online.test_trail.service.AuthenticateService;
 import com.online.test_trail.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -17,7 +22,7 @@ import java.util.Optional;
 public class UserController {
 
     private final UserService userService;
-
+    private final AuthenticateService authenticateService; // Inject your AuthenticateService
 
     @GetMapping
     public List<UserEntity> findAll() {
@@ -40,5 +45,40 @@ public class UserController {
     public String deleteById(@PathVariable("id") Integer id) {
         userService.deleteById(id);
         return "Data deleted successfully";
+    }
+
+    @PostMapping("/forget-password")
+    public ResponseEntity<String> initiateForgetPassword(@RequestBody ForgetPasswordDto forgetPasswordDto) {
+        // Call the service to initiate forget password process
+        authenticateService.initiateForgetPassword(forgetPasswordDto.getEmail());
+        return ResponseEntity.ok("Forget password initiated. Check your email for OTP.");
+    }
+    @PostMapping("/submit-otp")
+    public ResponseEntity<String> submitOtp(@RequestBody ForgetPasswordDto forgetPasswordDto) {
+        // Call the service to validate the submitted OTP
+        boolean isValidOtp = authenticateService.validateForgetPasswordOtp(forgetPasswordDto.getEmail(), forgetPasswordDto.getOtp());
+        if (isValidOtp) {
+            return ResponseEntity.ok("OTP is valid. Proceed to set a new password.");
+        } else {
+            return ResponseEntity.badRequest().body("Invalid OTP. Please try again.");
+        }
+    }
+
+    @PostMapping("/update-password")
+    public ResponseEntity<String> updatePassword(@RequestBody UpdatePasswordDto updatePasswordDTO) {
+        // Call the service to update the user's password
+        authenticateService.updatePassword(updatePasswordDTO.getEmail(), updatePasswordDTO.getNewPassword());
+        return ResponseEntity.ok("Password updated successfully.");
+    }
+
+    @PostMapping("/change-password")
+    public ResponseEntity<String> changePassword(@RequestBody ChangePasswordDto requestDTO) {
+        try {
+            // Validate the old password and update the password
+            authenticateService.changePassword(requestDTO.getEmail(), requestDTO.getOldPassword(), requestDTO.getNewPassword() );
+            return ResponseEntity.ok("Password changed successfully.");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Failed to change password. " + e.getMessage());
+        }
     }
 }
