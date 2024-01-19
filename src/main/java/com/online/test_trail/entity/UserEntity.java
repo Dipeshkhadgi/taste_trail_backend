@@ -40,6 +40,8 @@ public class UserEntity implements UserDetails {
     @Column(name = "password", nullable = false)
     private String password;
 
+    private String forgetPasswordOtp;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
