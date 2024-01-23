@@ -70,11 +70,8 @@ public class AuthenticateServiceImpl implements AuthenticateService {
     private void saveOtpToDatabase(String email, String otp) {
         // Implement your logic to store the OTP in the database
         // Example using UserRepository:
-<<<<<<< HEAD
         Optional<UserEntity> optionalUser = userRepo.getUserByUsername(email);
-=======
-        Optional<UserEntity> optionalUser = userRepo.getUserByEmail(email);
->>>>>>> d97faaa2f3b02378d080cee6e0ccdf8a11d08eb8
+
         optionalUser.ifPresent(users -> {
             users.setForgetPasswordOtp(otp);
             userRepo.save(users);
@@ -85,11 +82,7 @@ public class AuthenticateServiceImpl implements AuthenticateService {
     private String getStoredOtpFromDatabase(String email) {
         // Implement your logic to retrieve the stored OTP from the database
         // Example using UserRepository:
-<<<<<<< HEAD
         Optional<UserEntity> optionalUser = userRepo.getUserByUsername(email);
-=======
-        Optional<UserEntity> optionalUser = userRepo.getUserByEmail(email);
->>>>>>> d97faaa2f3b02378d080cee6e0ccdf8a11d08eb8
         return optionalUser.map(UserEntity::getForgetPasswordOtp).orElse(null);
     }
 
@@ -97,11 +90,7 @@ public class AuthenticateServiceImpl implements AuthenticateService {
     public void updatePassword(String email, String newPassword) {
         // Implement your logic to update the user's password
         // Example using UserRepository:
-<<<<<<< HEAD
         Optional<UserEntity> optionalUser = userRepo.getUserByUsername(email);
-=======
-        Optional<UserEntity> optionalUser = userRepo.getUserByEmail(email);
->>>>>>> d97faaa2f3b02378d080cee6e0ccdf8a11d08eb8
         optionalUser.ifPresent(user -> {
             user.setPassword(PasswordEncoderUtil.getInstance().encode(newPassword));
             user.setForgetPasswordOtp(null); // Reset forget password OTP after successful update
@@ -111,11 +100,7 @@ public class AuthenticateServiceImpl implements AuthenticateService {
 
     @Override
     public void changePassword(String email, String oldPassword, String newPassword) {
-<<<<<<< HEAD
         Optional<UserEntity> optionalUser = userRepo.getUserByUsername(email);
-=======
-        Optional<UserEntity> optionalUser = userRepo.getUserByEmail(email);
->>>>>>> d97faaa2f3b02378d080cee6e0ccdf8a11d08eb8
         optionalUser.ifPresent(user -> {
             // Validate old password
             if (PasswordEncoderUtil.getInstance().matches(oldPassword, user.getPassword())) {
