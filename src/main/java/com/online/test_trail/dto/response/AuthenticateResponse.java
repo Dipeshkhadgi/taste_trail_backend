@@ -13,5 +13,7 @@ public class AuthenticateResponse {
 
     private String token;
 
+    private Integer userId;
+
 
 }

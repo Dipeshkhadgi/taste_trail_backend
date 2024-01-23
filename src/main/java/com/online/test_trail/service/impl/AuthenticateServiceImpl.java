@@ -33,10 +33,11 @@ public class AuthenticateServiceImpl implements AuthenticateService {
                 )
         );
 
-        UserDetails userDetails = userRepo.getUserByUsername(authenticateRequest.getUsername())
+        UserEntity user=userRepo.getUserByUsername(authenticateRequest.getUsername())
                 .orElseThrow(() -> new EntityNotFoundException("User not found."));
+        UserDetails userDetails = user;
         String jwtToken = jwtService.generateToken(userDetails);
-        return AuthenticateResponse.builder().token(jwtToken).build();
+        return AuthenticateResponse.builder().token(jwtToken).userId(user.getId()).build();
     }
 
     @Override
