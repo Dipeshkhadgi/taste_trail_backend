@@ -29,15 +29,15 @@ public class ContentServiceImpl implements ContentService {
         return contentRepo.searchByCategory(category);
     }
 
-    @Override
-    public Optional<Content> findById(Long id) {
-        return contentRepo.findById(id);
-    }
-
-    @Override
-    public void deleteById(Long id) {
-        contentRepo.deleteById(id);
-    }
+//    @Override
+//    public Optional<Content> findById(Long id) {
+//        return contentRepo.findById(id);
+//    }
+//
+//    @Override
+//    public void deleteById(Long id) {
+//        contentRepo.deleteById(id);
+//    }
 
     @Override
     public void save(ContentDto contentDto) {
@@ -64,6 +64,30 @@ public class ContentServiceImpl implements ContentService {
 
         content = contentRepo.save(content);
 
+
+    }
+
+    @Override
+    public Content findById(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+    }
+
+    @Override
+    public List<Content> searchByTitle(String title) {
+        return null;
+    }
+
+    @Override
+    public void update(Long id, ContentDto contentDto) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
 
     }
 }

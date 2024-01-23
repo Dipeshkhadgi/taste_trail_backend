@@ -29,11 +29,11 @@ public class AuthenticateServiceImpl implements AuthenticateService {
     public AuthenticateResponse authenticate(AuthenticateRequest authenticateRequest) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        authenticateRequest.getEmail(), authenticateRequest.getPassword()
+                        authenticateRequest.getUsername(), authenticateRequest.getPassword()
                 )
         );
 
-        UserDetails userDetails = userRepo.getUserByEmail(authenticateRequest.getEmail())
+        UserDetails userDetails = userRepo.getUserByUsername(authenticateRequest.getUsername())
                 .orElseThrow(() -> new EntityNotFoundException("User not found."));
         String jwtToken = jwtService.generateToken(userDetails);
         return AuthenticateResponse.builder().token(jwtToken).build();
@@ -70,7 +70,8 @@ public class AuthenticateServiceImpl implements AuthenticateService {
     private void saveOtpToDatabase(String email, String otp) {
         // Implement your logic to store the OTP in the database
         // Example using UserRepository:
-        Optional<UserEntity> optionalUser = userRepo.getUserByEmail(email);
+        Optional<UserEntity> optionalUser = userRepo.getUserByUsername(email);
+
         optionalUser.ifPresent(users -> {
             users.setForgetPasswordOtp(otp);
             userRepo.save(users);
@@ -81,7 +82,7 @@ public class AuthenticateServiceImpl implements AuthenticateService {
     private String getStoredOtpFromDatabase(String email) {
         // Implement your logic to retrieve the stored OTP from the database
         // Example using UserRepository:
-        Optional<UserEntity> optionalUser = userRepo.getUserByEmail(email);
+        Optional<UserEntity> optionalUser = userRepo.getUserByUsername(email);
         return optionalUser.map(UserEntity::getForgetPasswordOtp).orElse(null);
     }
 
@@ -89,7 +90,7 @@ public class AuthenticateServiceImpl implements AuthenticateService {
     public void updatePassword(String email, String newPassword) {
         // Implement your logic to update the user's password
         // Example using UserRepository:
-        Optional<UserEntity> optionalUser = userRepo.getUserByEmail(email);
+        Optional<UserEntity> optionalUser = userRepo.getUserByUsername(email);
         optionalUser.ifPresent(user -> {
             user.setPassword(PasswordEncoderUtil.getInstance().encode(newPassword));
             user.setForgetPasswordOtp(null); // Reset forget password OTP after successful update
@@ -99,7 +100,7 @@ public class AuthenticateServiceImpl implements AuthenticateService {
 
     @Override
     public void changePassword(String email, String oldPassword, String newPassword) {
-        Optional<UserEntity> optionalUser = userRepo.getUserByEmail(email);
+        Optional<UserEntity> optionalUser = userRepo.getUserByUsername(email);
         optionalUser.ifPresent(user -> {
             // Validate old password
             if (PasswordEncoderUtil.getInstance().matches(oldPassword, user.getPassword())) {

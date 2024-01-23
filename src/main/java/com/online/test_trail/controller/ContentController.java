@@ -18,7 +18,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -29,7 +28,6 @@ import java.util.Optional;
 public class ContentController {
     private final ContentService contentService;
     private final ApiResponse apiResponse;
-
 
     @GetMapping
     public ResponseEntity<Map<String ,Object>> get(){
@@ -48,15 +46,20 @@ public class ContentController {
         return "created data";
     }
 
+//    @PutMapping("/{id}")
+//    public ResponseEntity<Map<String, Object>> update(@PathVariable Long id, @Valid @RequestBody ContentDto contentDto) {
+//        contentService.update(id, contentDto);
+//        return apiResponse.successResponse("Data update successfully", true, null, null);
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Map<String, Object>> delete(@PathVariable Long id) {
+//        contentService.deleteById(id);
+//        return apiResponse.successResponse("Data delete successfully", true, null, null);
+//    }
     @GetMapping("/{id}")
     public Optional<Content> findById(@PathVariable("id") Long id) {
-        return contentService.findById(id);
-    }
-
-    @DeleteMapping("/{id}")
-    public String deleteById(@PathVariable("id") Long id) {
-        contentService.deleteById(id);
-        return "Data deleted successfully";
+        return Optional.ofNullable(contentService.findById(id));
     }
 
 }

@@ -30,7 +30,7 @@ public class UserController {
     }
 
 
-    @PostMapping
+    @PostMapping("/save")
     public String save(@Valid @RequestBody UserDto userDto) {
         userService.save(userDto);
         return "Data saved Successfully";
