@@ -30,7 +30,7 @@ public class ContentController {
     private final ApiResponse apiResponse;
 
     @GetMapping
-    public ResponseEntity<Map<String, Object>> get(){
+    public ResponseEntity<Map<String ,Object>> get(){
         return apiResponse.successResponse("Data fetch successfully",true,null,contentService.findAll());
     }
 

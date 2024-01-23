@@ -56,6 +56,7 @@ public class SpringSecurityConfig {
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
+
         return httpSecurity.build();
     }
 

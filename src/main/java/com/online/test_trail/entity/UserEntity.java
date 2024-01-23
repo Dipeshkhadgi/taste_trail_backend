@@ -40,8 +40,11 @@ public class UserEntity implements UserDetails {
     @Column(name = "password", nullable = false)
     private String password;
 
+<<<<<<< HEAD
     @Column(name = "confirm_password", nullable = false)
     private String confirmPassword;
+=======
+>>>>>>> d97faaa2f3b02378d080cee6e0ccdf8a11d08eb8
     private String forgetPasswordOtp;
 
     @Override
