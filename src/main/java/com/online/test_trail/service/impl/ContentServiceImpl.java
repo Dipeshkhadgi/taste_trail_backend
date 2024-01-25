@@ -1,7 +1,9 @@
 package com.online.test_trail.service.impl;
 
 import com.online.test_trail.dto.ContentDto;
+import com.online.test_trail.dto.response.ContentResponse;
 import com.online.test_trail.entity.Content;
+import com.online.test_trail.repo.ContentMapper;
 import com.online.test_trail.repo.ContentRepo;
 import com.online.test_trail.service.ContentService;
 import lombok.RequiredArgsConstructor;
@@ -16,11 +18,12 @@ import java.util.Optional;
 public class ContentServiceImpl implements ContentService {
 
     private final ContentRepo contentRepo;
+    private final ContentMapper contentMapper;
 
 
     @Override
-    public List<Content> findAll() {
-        return contentRepo.findAll();
+    public List<ContentResponse> findAll() {
+        return contentMapper.findAll();
 
     }
 

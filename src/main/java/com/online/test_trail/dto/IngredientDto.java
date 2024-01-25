@@ -11,6 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class IngredientDto {
 
+    private Long id;
     private String ingredientName;
     private int ingredientQuantity;
     private double ingredientFraction;
