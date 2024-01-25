@@ -2,7 +2,6 @@ package com.online.test_trail.security;
 
 
 import com.online.test_trail.config.PasswordEncoderUtil;
-//import com.online.test_trail.service.impl.CustomUserDetailService;
 import com.online.test_trail.service.impl.CustomUserDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -38,23 +37,23 @@ public class SpringSecurityConfig {
     }
 
 
+
+
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity httpSecurity)
             throws Exception {
         httpSecurity
                 .csrf().disable()
-                .authorizeHttpRequests()
-                .requestMatchers("/authenticate")
-                .permitAll()
-                .anyRequest()
-//                .permitAll();
-                .authenticated()
+                .authorizeRequests()
+                .requestMatchers("/users/save").permitAll()
+                .requestMatchers("/authenticate").permitAll()
+                .anyRequest().authenticated()
                 .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
 
 
         return httpSecurity.build();

@@ -1,17 +1,21 @@
 package com.online.test_trail.controller;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.online.test_trail.dto.IngredientDto;
 import com.online.test_trail.entity.Content;
 import com.online.test_trail.entity.Ingredient;
-import com.online.test_trail.helper.ApiResponse;
 import com.online.test_trail.service.IngredientService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/ingredients")
