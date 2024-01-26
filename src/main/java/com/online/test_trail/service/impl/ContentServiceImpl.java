@@ -1,14 +1,15 @@
 package com.online.test_trail.service.impl;
 
 import com.online.test_trail.dto.ContentDto;
+import com.online.test_trail.dto.response.ContentResponse;
 import com.online.test_trail.entity.Content;
+import com.online.test_trail.repo.ContentMapper;
 import com.online.test_trail.repo.ContentRepo;
 import com.online.test_trail.service.ContentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Service
@@ -16,12 +17,18 @@ import java.util.Optional;
 public class ContentServiceImpl implements ContentService {
 
     private final ContentRepo contentRepo;
+    private final ContentMapper contentMapper;
 
 
     @Override
-    public List<Content> findAll() {
-        return contentRepo.findAll();
+    public List<ContentResponse> findAll() {
+        return contentMapper.findAll();
 
+    }
+
+    @Override
+    public List<ContentResponse> searchByTitle(String title) {
+        return contentMapper.findByTitle(title);
     }
 
     @Override
@@ -33,11 +40,11 @@ public class ContentServiceImpl implements ContentService {
 //    public Optional<Content> findById(Long id) {
 //        return contentRepo.findById(id);
 //    }
-//
-//    @Override
-//    public void deleteById(Long id) {
-//        contentRepo.deleteById(id);
-//    }
+
+    @Override
+    public void deleteById(Long id) {
+        contentRepo.deleteById(id);
+    }
 
     @Override
     public void save(ContentDto contentDto) {
@@ -64,30 +71,6 @@ public class ContentServiceImpl implements ContentService {
 
         content = contentRepo.save(content);
 
-
-    }
-
-    @Override
-    public Content findById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
-    }
-
-    @Override
-    public List<Content> searchByTitle(String title) {
-        return null;
-    }
-
-    @Override
-    public void update(Long id, ContentDto contentDto) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
-    }
-
-    @Override
-    public void deleteById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
 
     }
 }

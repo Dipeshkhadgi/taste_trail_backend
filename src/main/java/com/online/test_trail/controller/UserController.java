@@ -36,6 +36,9 @@ public class UserController {
         return "Data saved Successfully";
     }
 
+
+
+    @CrossOrigin
     @GetMapping("/{id}")
     public Optional<UserEntity> findById(@PathVariable("id") Integer id) {
         return userService.findById(id);

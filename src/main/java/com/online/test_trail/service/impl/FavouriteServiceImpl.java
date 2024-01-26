@@ -11,6 +11,9 @@ import com.online.test_trail.service.FavouriteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class FavouriteServiceImpl implements FavouriteService {
@@ -23,14 +26,18 @@ public class FavouriteServiceImpl implements FavouriteService {
     public void save(FavouriteDto favouriteDto) {
         Favourite favourite;
 
-        if (favouriteDto.getId() != null) {
-            favourite = favouriteRepo.findById(favouriteDto.getId()).get();
-        } else {
-            favourite = new Favourite();
-        }
 
         Content content = contentRepo.findById(favouriteDto.getContentId()).get();
         UserEntity user = userRepo.findById(favouriteDto.getUserId()).get();
+
+        Optional<Favourite> favourite1=favouriteRepo.findByContent(content.getId());
+
+        if(favourite1.isEmpty()){
+            favourite=new Favourite();
+
+        }else{
+            favourite=favourite1.get();
+        }
 
 
         favourite.setContent(content);
@@ -38,5 +45,10 @@ public class FavouriteServiceImpl implements FavouriteService {
         favourite.setIsLike(favouriteDto.getIsLike());
 
         favouriteRepo.save(favourite);
+    }
+
+    @Override
+    public List<Favourite> findByUserId(Integer userId) {
+        return favouriteRepo.findAllByUserId(userId);
     }
 }
