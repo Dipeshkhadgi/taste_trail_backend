@@ -13,7 +13,7 @@ public class IngredientDto {
 
     private Long id;
     private String ingredientName;
-    private int ingredientQuantity;
-    private double ingredientFraction;
+    private String ingredientQuantity;
+    private String ingredientFraction;
     private String ingredientUnit;
 }

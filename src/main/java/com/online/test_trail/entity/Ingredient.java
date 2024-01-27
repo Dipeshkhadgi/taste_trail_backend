@@ -22,10 +22,10 @@ public class Ingredient {
     private String ingredientName;
 
     @Column(name = "ingredientQuantity", nullable = false)
-    private int ingredientQuantity;
+    private String ingredientQuantity;
 
     @Column(name = "ingredientFraction", nullable = false)
-    private double ingredientFraction;
+    private String ingredientFraction;
 
     @Column(name = "ingredientUnit", nullable = false)
     private String ingredientUnit;
