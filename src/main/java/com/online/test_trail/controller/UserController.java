@@ -36,6 +36,9 @@ public class UserController {
         return "Data saved Successfully";
     }
 
+
+
+    @CrossOrigin
     @GetMapping("/{id}")
     public Optional<UserEntity> findById(@PathVariable("id") Integer id) {
         return userService.findById(id);
@@ -46,6 +49,17 @@ public class UserController {
         userService.deleteById(id);
         return "Data deleted successfully";
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateUser(@PathVariable Integer id, @Valid @RequestBody UserDto userDto) {
+        try {
+            userService.updateUser(id, userDto);
+            return ResponseEntity.ok("User updated successfully.");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Failed to update user: " + e.getMessage());
+        }
+    }
+
 
     @PostMapping("/forget-password")
     public ResponseEntity<String> initiateForgetPassword(@RequestBody ForgetPasswordDto forgetPasswordDto) {

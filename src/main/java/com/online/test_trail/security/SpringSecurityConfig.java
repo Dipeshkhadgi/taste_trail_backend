@@ -45,18 +45,15 @@ public class SpringSecurityConfig {
         httpSecurity
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/users/save").permitAll()
-                .requestMatchers("/authenticate").permitAll()
+                .requestMatchers("/authenticate","/users/save").permitAll()
                 .anyRequest()
-//                .permitAll();
-                .authenticated()
+                .permitAll()
                 .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
-
-
 
         return httpSecurity.build();
     }

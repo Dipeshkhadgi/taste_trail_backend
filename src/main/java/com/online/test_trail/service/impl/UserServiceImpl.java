@@ -54,4 +54,18 @@ public class UserServiceImpl implements UserService {
 
         userRepo.save(userEntity);
     }
+    @Override
+    public void updateUser(Integer id, UserDto userDto) {
+        UserEntity userEntity = userRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+
+        // Update userEntity fields with userDto data
+        userEntity.setFirstName(userDto.getFirstName());
+        userEntity.setLastName(userDto.getLastName());
+        userEntity.setUsername(userDto.getUsername());
+        userEntity.setEmail(userDto.getEmail());
+
+        // Save the updated userEntity
+        userRepo.save(userEntity);
+    }
 }

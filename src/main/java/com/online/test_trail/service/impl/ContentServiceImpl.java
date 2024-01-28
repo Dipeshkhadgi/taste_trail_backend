@@ -27,6 +27,11 @@ public class ContentServiceImpl implements ContentService {
     }
 
     @Override
+    public List<ContentResponse> searchByTitle(String title) {
+        return contentMapper.findByTitle(title);
+    }
+
+    @Override
     public List<Content> searchByCategory(String category) {
         return contentRepo.searchByCategory(category);
     }
