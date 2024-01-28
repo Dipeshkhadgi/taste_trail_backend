@@ -47,4 +47,6 @@ public class CommentServiceImpl implements CommentService {
     public List<Comment> getCommentByContentId(Long content_id) {
         return commentRepo.findCommentByContent_Id(content_id);
     }
+
+
 }

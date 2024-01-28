@@ -11,6 +11,7 @@ import com.online.test_trail.service.FavouriteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -44,5 +45,10 @@ public class FavouriteServiceImpl implements FavouriteService {
         favourite.setIsLike(favouriteDto.getIsLike());
 
         favouriteRepo.save(favourite);
+    }
+
+    @Override
+    public List<Favourite> findByUserId(Integer userId) {
+        return favouriteRepo.findAllByUserId(userId);
     }
 }

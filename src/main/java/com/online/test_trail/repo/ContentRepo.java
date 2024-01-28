@@ -10,8 +10,7 @@ import java.util.List;
 @Repository
 public interface ContentRepo extends JpaRepository<Content, Long> {
 
-    @Query(value = "select * from content where recipe_title like '%?1%'", nativeQuery = true)
-    List<Content> searchByRecipeTitle(String recipeTitle);
+    List<Content> findAllByRecipeTitle(String recipeTitle);
 
     @Query(value = "select * from content where category_type=?1", nativeQuery = true)
     List<Content> searchByCategory(String category);

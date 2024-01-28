@@ -1,6 +1,8 @@
 package com.online.test_trail.exception;
 
 import com.online.test_trail.helper.ApiResponse;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.JwtException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
@@ -29,6 +31,11 @@ public class CustomExceptionHandler {
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ResponseEntity<Map<String, Object>> methodNotSupportedExceptionHandler(HttpRequestMethodNotSupportedException notSupportedException) {
         return apiResponse.successResponse(notSupportedException.getMessage(), false, notSupportedException.getMessage(), null);
+    }
+
+    @ExceptionHandler(ExpiredJwtException.class)
+    public ResponseEntity<Map<String, Object>> jwtExceptionHandler(ExpiredJwtException jwtException) {
+        return apiResponse.successResponse(jwtException.getMessage(), false, jwtException.getMessage(), null);
     }
 
 }
