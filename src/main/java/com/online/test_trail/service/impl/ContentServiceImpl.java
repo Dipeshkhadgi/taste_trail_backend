@@ -1,7 +1,9 @@
 package com.online.test_trail.service.impl;
 
 import com.online.test_trail.dto.ContentDto;
+import com.online.test_trail.dto.response.ContentResponse;
 import com.online.test_trail.entity.Content;
+import com.online.test_trail.repo.ContentMapper;
 import com.online.test_trail.repo.ContentRepo;
 import com.online.test_trail.service.ContentService;
 import lombok.RequiredArgsConstructor;
@@ -16,16 +18,23 @@ import java.util.Optional;
 public class ContentServiceImpl implements ContentService {
 
     private final ContentRepo contentRepo;
+    private final ContentMapper contentMapper;
 
 
     @Override
-    public List<Content> findAll() {
-        return contentRepo.findAll();
+    public List<ContentResponse> findAll() {
+        return contentMapper.findAll();
+
     }
 
     @Override
-    public List<Content> searchByTitle(String title) {
-        return contentRepo.searchByRecipeTitle(title);
+    public List<ContentResponse> searchByTitle(String title) {
+        return contentMapper.findByTitle(title);
+    }
+
+    @Override
+    public List<Content> searchByCategory(String category) {
+        return contentRepo.searchByCategory(category);
     }
 
     @Override
@@ -58,11 +67,11 @@ public class ContentServiceImpl implements ContentService {
         content.setRecipeQuantityType(contentDto.getRecipeQuantityType());
         content.setCategoryType(contentDto.getCategoryType());
         content.setStepDescription(contentDto.getStepDescription());
-        content.setUsedIngredients(contentDto.getUsedIngredients());
         content.setRecipePhoto(contentDto.getRecipePhoto());
-        content.setGatheredIngredients(contentDto.getGatheredIngredients());
+        content.setIncredientList(contentDto.getIngredientsList());
+
+        content = contentRepo.save(content);
 
 
-        contentRepo.save(content);
     }
 }

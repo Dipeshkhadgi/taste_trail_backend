@@ -11,6 +11,8 @@ import com.online.test_trail.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -40,4 +42,11 @@ public class CommentServiceImpl implements CommentService {
 
         commentRepo.save(comment);
     }
+
+    @Override
+    public List<Comment> getCommentByContentId(Long content_id) {
+        return commentRepo.findCommentByContent_Id(content_id);
+    }
+
+
 }

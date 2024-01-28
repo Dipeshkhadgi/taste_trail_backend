@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.online</groupId>
-    <artifactId>test_trail</artifactId>
+    <artifactId>taste_trail</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>test_trail</name>
-    <description>test_trail</description>
+    <name>taste_trail</name>
+    <description>taste_trail</description>
     <properties>
         <java.version>17</java.version>
     </properties>
