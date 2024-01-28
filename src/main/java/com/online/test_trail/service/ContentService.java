@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface ContentService {
 
+    List<Content> getAll();
+
     List<ContentResponse> findAll();
 
     List<Content> searchByCategory(String category);
