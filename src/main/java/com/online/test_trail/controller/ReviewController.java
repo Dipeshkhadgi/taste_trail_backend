@@ -1,12 +1,10 @@
 package com.online.test_trail.controller;
 
 import com.online.test_trail.dto.ReviewDto;
-import com.online.test_trail.entity.Comment;
 import com.online.test_trail.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/review")

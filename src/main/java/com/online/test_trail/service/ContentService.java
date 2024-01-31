@@ -5,6 +5,7 @@ import com.online.test_trail.dto.response.ContentResponse;
 import com.online.test_trail.entity.Content;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ContentService {
 
@@ -13,7 +14,8 @@ public interface ContentService {
     List<Content> searchByCategory(String category);
 
 
-    //    Optional<Content> findById(Long id);
+        Optional<Content> findById(Long id);
+
     List<ContentResponse> searchByTitle(String title);
 
     void deleteById(Long id);

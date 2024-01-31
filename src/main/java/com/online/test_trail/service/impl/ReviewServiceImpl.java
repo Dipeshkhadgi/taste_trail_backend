@@ -40,8 +40,12 @@ public class ReviewServiceImpl implements ReviewService {
         reviewRepo.save(review);
     }
 
+
+
+
     @Override
     public Integer getReviewByContentId(Long content_id) {
         return reviewRepo.getReviewByContentId(content_id);
     }
 }
+
