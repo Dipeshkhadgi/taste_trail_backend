@@ -24,7 +24,7 @@ public class Ingredient {
     @Column(name = "ingredientQuantity", nullable = false)
     private String ingredientQuantity;
 
-    @Column(name = "ingredientFraction", nullable = false)
+    @Column(name = "ingredientFraction")
     private String ingredientFraction;
 
     @Column(name = "ingredientUnit", nullable = false)
