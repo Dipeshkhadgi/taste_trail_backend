@@ -1,16 +1,6 @@
 package com.online.test_trail.controller;
 
 
-//import com.online.test_trail.dto.request.ContentDto;
-//import com.online.test_trail.helper.ApiResponse;
-//import com.online.test_trail.service.ContentService;
-//import lombok.RequiredArgsConstructor;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.web.bind.annotation.*;
-//
-//import javax.validation.Valid;
-//import java.util.Map;
-
 import com.online.test_trail.dto.ContentDto;
 import com.online.test_trail.dto.response.ContentResponse;
 import com.online.test_trail.entity.Content;
@@ -22,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/content")
@@ -58,10 +49,10 @@ public class ContentController {
         return "created data";
     }
 
-//    @GetMapping("/{id}")
-//    public Optional<Content> findById(@PathVariable("id") Long id) {
-//        return contentService.findById(id);
-//    }
+    @GetMapping("/{id}")
+    public Optional<Content> findById(@PathVariable("id") Long id) {
+        return contentService.findById(id);
+    }
 
     @DeleteMapping("/{id}")
     public String deleteById(@PathVariable("id") Long id) {
