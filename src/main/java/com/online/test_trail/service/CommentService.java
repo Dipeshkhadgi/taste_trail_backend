@@ -10,4 +10,8 @@ public interface CommentService {
     void save(CommentDto commentDto);
 
     List<Comment> getCommentByContentId(Long content_id);
+
+    void deleteById(Long id);
+
+    List<Comment> getAllComments();
 }

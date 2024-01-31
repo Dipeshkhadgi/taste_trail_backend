@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -36,10 +37,10 @@ public class ContentServiceImpl implements ContentService {
         return contentRepo.searchByCategory(category);
     }
 
-//    @Override
-//    public Optional<Content> findById(Long id) {
-//        return contentRepo.findById(id);
-//    }
+    @Override
+    public Optional<Content> findById(Long id) {
+        return contentRepo.findById(id);
+    }
 
     @Override
     public void deleteById(Long id) {

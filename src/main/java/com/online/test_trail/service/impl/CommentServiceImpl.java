@@ -48,5 +48,14 @@ public class CommentServiceImpl implements CommentService {
         return commentRepo.findCommentByContent_Id(content_id);
     }
 
+    @Override
+    public List<Comment> getAllComments() {
+        return commentRepo.findAll();
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        commentRepo.deleteById(id);
+    }
 
 }
