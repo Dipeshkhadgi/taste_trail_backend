@@ -23,7 +23,7 @@ public class Content {
     @Column(name = "recipe_title", nullable = false)
     private String recipeTitle;
 
-    @Column(name = "recipe_description", length = 500)
+    @Column(name = "recipe_description", length = 200)
     private String recipeDescription;
 
     @Column(name = "prep_time_hours")
@@ -41,7 +41,7 @@ public class Content {
     @Column(name = "category_type")
     private String categoryType;
 
-    @Column(name = "step_description", length = 500)
+    @Column(name = "step_description", length = 5000)
     private String stepDescription;
 
     @Column(name = "recipe_photo")

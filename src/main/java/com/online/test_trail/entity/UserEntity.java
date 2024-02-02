@@ -42,7 +42,6 @@ public class UserEntity implements UserDetails {
 
     @Column(name = "confirm_password", nullable = false)
     private String confirmPassword;
-    private String forgetPasswordOtp;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -73,4 +72,6 @@ public class UserEntity implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    private String forgetPasswordOtp;
 }

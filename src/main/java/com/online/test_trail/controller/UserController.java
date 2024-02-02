@@ -63,13 +63,11 @@ public class UserController {
 
     @PostMapping("/forget-password")
     public ResponseEntity<String> initiateForgetPassword(@RequestBody ForgetPasswordDto forgetPasswordDto) {
-        // Call the service to initiate forget password process
         authenticateService.initiateForgetPassword(forgetPasswordDto.getEmail());
         return ResponseEntity.ok("Forget password initiated. Check your email for OTP.");
     }
     @PostMapping("/submit-otp")
     public ResponseEntity<String> submitOtp(@RequestBody ForgetPasswordDto forgetPasswordDto) {
-        // Call the service to validate the submitted OTP
         boolean isValidOtp = authenticateService.validateForgetPasswordOtp(forgetPasswordDto.getEmail(), forgetPasswordDto.getOtp());
         if (isValidOtp) {
             return ResponseEntity.ok("OTP is valid. Proceed to set a new password.");
@@ -80,7 +78,6 @@ public class UserController {
 
     @PostMapping("/update-password")
     public ResponseEntity<String> updatePassword(@RequestBody UpdatePasswordDto updatePasswordDTO) {
-        // Call the service to update the user's password
         authenticateService.updatePassword(updatePasswordDTO.getEmail(), updatePasswordDTO.getNewPassword());
         return ResponseEntity.ok("Password updated successfully.");
     }
@@ -88,8 +85,7 @@ public class UserController {
     @PostMapping("/change-password")
     public ResponseEntity<String> changePassword(@RequestBody ChangePasswordDto requestDTO) {
         try {
-            // Validate the old password and update the password
-            authenticateService.changePassword(requestDTO.getEmail(), requestDTO.getOldPassword(), requestDTO.getNewPassword() );
+            authenticateService.changePassword(requestDTO.getEmail(), requestDTO.getOldPassword(), requestDTO.getNewPassword());
             return ResponseEntity.ok("Password changed successfully.");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Failed to change password. " + e.getMessage());
