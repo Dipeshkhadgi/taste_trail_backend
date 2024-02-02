@@ -47,7 +47,6 @@ public class Content {
     @Column(name = "recipe_photo")
     private String recipePhoto;
 
-
     @Column(name="ingredient_list")
     private String incredientList;
 
