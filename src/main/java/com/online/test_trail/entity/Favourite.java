@@ -14,6 +14,7 @@ import lombok.Setter;
 @Table(name = "favourite")
 public class Favourite {
 
+
     @Id
     @SequenceGenerator(name = "contents_seq_gen", sequenceName = "contents_id_seq", allocationSize = 1)
     @GeneratedValue(generator = "contents_seq_gen", strategy = GenerationType.SEQUENCE)
