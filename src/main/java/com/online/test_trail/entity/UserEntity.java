@@ -44,7 +44,6 @@ public class UserEntity implements UserDetails {
 
     @Column(name = "confirm_password", nullable = false)
     private String confirmPassword;
-    private String forgetPasswordOtp;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
@@ -89,4 +88,6 @@ public class UserEntity implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    private String forgetPasswordOtp;
 }

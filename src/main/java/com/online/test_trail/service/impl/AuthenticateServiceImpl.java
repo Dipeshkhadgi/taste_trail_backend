@@ -35,7 +35,7 @@ public class AuthenticateServiceImpl implements AuthenticateService {
                 )
         );
 
-        UserEntity user=userRepo.getUserByUsername(authenticateRequest.getUsername())
+        UserEntity user = userRepo.getUserByUsername(authenticateRequest.getUsername())
                 .orElseThrow(() -> new EntityNotFoundException("User not found."));
         UserDetails userDetails = user;
         String jwtToken = jwtService.generateToken(userDetails);
@@ -76,7 +76,6 @@ public class AuthenticateServiceImpl implements AuthenticateService {
         // Implement your logic to store the OTP in the database
         // Example using UserRepository:
         Optional<UserEntity> optionalUser = userRepo.getUserByUsername(email);
-
         optionalUser.ifPresent(users -> {
             users.setForgetPasswordOtp(otp);
             userRepo.save(users);
