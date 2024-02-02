@@ -27,6 +27,11 @@ public class ContentController {
         return apiResponse.successResponse("Data fetch successfully", true, null, contentService.findAll());
     }
 
+    @GetMapping("/getAll")
+    public List<Content> getAllData() {
+        return contentService.getAll();
+    }
+
     @GetMapping("/byCategory/{category}")
     public List<Content> searchByCategory(@PathVariable("category") String category) {
         return this.contentService.searchByCategory(category);

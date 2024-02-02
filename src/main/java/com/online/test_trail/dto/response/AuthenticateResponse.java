@@ -15,5 +15,7 @@ public class AuthenticateResponse {
 
     private Integer userId;
 
+    private String role;
+
 
 }

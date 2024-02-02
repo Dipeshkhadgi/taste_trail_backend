@@ -11,6 +11,8 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +39,9 @@ public class AuthenticateServiceImpl implements AuthenticateService {
                 .orElseThrow(() -> new EntityNotFoundException("User not found."));
         UserDetails userDetails = user;
         String jwtToken = jwtService.generateToken(userDetails);
-        return AuthenticateResponse.builder().token(jwtToken).userId(user.getId()).build();
+
+
+        return AuthenticateResponse.builder().token(jwtToken).userId(user.getId()).role(user.getId()==3?"admin":"").build();
     }
 
     @Override

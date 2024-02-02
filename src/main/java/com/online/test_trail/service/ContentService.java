@@ -9,6 +9,8 @@ import java.util.Optional;
 
 public interface ContentService {
 
+    List<Content> getAll();
+
     List<ContentResponse> findAll();
 
     List<Content> searchByCategory(String category);
